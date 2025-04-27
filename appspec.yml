@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+files:
+  source: target/DevOpsSummative-1.0-SNAPSHOT.jar # Maven compiles to target by default
+  destination: /home/ec2-user/app # on ec2 filesystem
+
+hooks:
+  ApplicationStop:
+    - location: scripts/stop-server.sh
+  AfterInstall:
+    - location: scripts/start-server.sh
+  ValidateService:
+    - location: scripts/validate-service.sh
